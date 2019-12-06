@@ -127,4 +127,3 @@ static char av_error[AV_ERROR_MAX_STRING_SIZE] = {0};
  */
 
 #endif /* AVUTIL_ERROR_H */
-

@@ -13,7 +13,7 @@ echo "ffmpeg_Sources:$FF_SOURCE"
 echo "ffmpeg_Prefix:$FF_PREFIX"
 
 
-CONFIGURE_FLAGS="--disable-encoders --disable-decoders --disable-demuxers --disable-muxers --disable-parsers --disable-filters --enable-avfilter --enable-filter=anull --enable-encoder=h264,aac --enable-decoder=h264,aac --enable-muxer=h264,aac,flv,mp4 --enable-demuxer=h264,aac*,flv --enable-parser=h264,aac"
+CONFIGURE_FLAGS="--disable-encoders --disable-decoders --disable-demuxers --disable-muxers --disable-parsers --disable-filters --enable-avfilter --disable-indevs --disable-outdevs --disable-postproc --enable-filter=anull --enable-encoder=h264,aac --enable-decoder=h264,aac --enable-muxer=h264,aac,flv --enable-demuxer=h264,aac,flv --enable-parser=h264,aac --disable-protocols=rtp --disable-protocol=srtp --disable-protocol=ftp --disable-protocols=hls --disable-protocols=concat --disable-protocols=icecast --disable-bsfs --enable-bsf=aac_adtstoasc --enable-bsf=h264_mp4toannexb --enable-bsf=null --enable-bsf=noise"
 
 CONFIGURE_CFLAGS=""
 CONFIGURE_LDFLAGS=""
@@ -34,11 +34,14 @@ fi
 --enable-cross-compile \
 --target-os=linux \
 --arch=arm \
---enable-static \
+--disable-static \
 --enable-shared \
 --disable-debug \
 --disable-programs \
 --disable-ffplay \
+--disable-ffmpeg \
+--disable-ffserver \
+--disable-ffprobe \
 --disable-doc \
 --enable-pic \
 --enable-gpl \
