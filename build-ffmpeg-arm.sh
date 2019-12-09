@@ -3,7 +3,6 @@
 FF_VERSION="3.4.2"
 FF_SOURCE=`pwd`/"ffmpeg-$FF_VERSION"
 FF_PREFIX=`pwd`/FFmpeg-arm
-#X264_PATH=`pwd`/x264-arm
 ARM_GCC=arm-buildroot-linux-gnueabi
 
 mkdir -p $FF_PREFIX && rm $FF_PREFIX/* -rf
@@ -13,19 +12,10 @@ echo "ffmpeg_Sources:$FF_SOURCE"
 echo "ffmpeg_Prefix:$FF_PREFIX"
 
 
-CONFIGURE_FLAGS="--disable-encoders --disable-decoders --disable-demuxers --disable-muxers --disable-parsers --disable-filters --enable-avfilter --disable-indevs --disable-outdevs --disable-postproc --enable-filter=anull --enable-encoder=h264,aac --enable-decoder=h264,aac --enable-muxer=h264,aac,flv --enable-demuxer=h264,aac,flv --enable-parser=h264,aac --disable-protocols=rtp --disable-protocol=srtp --disable-protocol=ftp --disable-protocols=hls --disable-protocols=concat --disable-protocols=icecast --disable-bsfs --enable-bsf=aac_adtstoasc --enable-bsf=h264_mp4toannexb --enable-bsf=null --enable-bsf=noise"
+CONFIGURE_FLAGS="--disable-encoders --disable-decoders --disable-demuxers --disable-muxers --disable-parsers --disable-filters --enable-avfilter --disable-indevs --disable-outdevs --disable-postproc --enable-filter=anull --enable-encoder=h264,aac --enable-decoder=h264,aac --enable-muxer=h264,aac,flv --enable-demuxer=h264,aac,flv --enable-parser=h264,aac --disable-protocol=rtp --disable-protocol=sctp --disable-protocol=ftp --disable-protocol=hls --disable-protocol=concat --disable-protocol=icecast --disable-bsfs --enable-bsf=aac_adtstoasc --enable-bsf=h264_mp4toannexb --enable-bsf=null --enable-bsf=noise"
 
 CONFIGURE_CFLAGS=""
 CONFIGURE_LDFLAGS=""
-
-if [ "$X264_PATH" ]
-then
-    CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-gpl --enable-libx264"
-    CONFIGURE_CFLAGS="-I$CONFIGURE_CFLAGS$X264_PATH/include"
-    CONFIGURE_LDFLAGS="-L$CONFIGURE_LDFLAGS$X264_PATH/lib"
-    echo "x264_cflags:$CONFIGURE_CFLAGS"
-    echo "x264_ldflags:$CONFIGURE_LDFLAGS"
-fi
 
 ./configure \
 --cc=$ARM_GCC-gcc \
