@@ -21,7 +21,7 @@ CONFIGURE_LDFLAGS=""
 
 if [ "$X264_PATH" ]
 then
-    CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-gpl --enable-libx264"
+    CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-gpl --enable-libx264 --enable-encoder=libx264"
     CONFIGURE_CFLAGS="-I$CONFIGURE_CFLAGS$X264_PATH/include"
     CONFIGURE_LDFLAGS="-L$CONFIGURE_LDFLAGS$X264_PATH/lib"
     echo "x264_cflags:$CONFIGURE_CFLAGS"
