@@ -12,11 +12,11 @@ CC 	:= $(CROSS_COMPILE)g++
 
 ROOT_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 #LIBS    := -L$(ROOT_PATH)/lib/ffmpeg/lib -L$(ROOT_PATH)/lib/curl/lib -L$(ROOT_PATH)/lib/x264/lib -L$(ROOT_PATH)/lib/openssl/lib
-LIBS    := -L$(ROOT_PATH)/lib/ffmpeg/lib -L$(ROOT_PATH)/lib/lib
+LIBS    := -L$(ROOT_PATH)/lib/ffmpeg/lib -L$(ROOT_PATH)/lib/lib -L$(ROOT_PATH)/lib/x264/lib
 LDFLAGS := -lstdc++ -lssl -lcrypto -lcurl
 DEFINES :=
 #INCLUDE := -I$(ROOT_PATH)/lib/ffmpeg/include -I$(ROOT_PATH)/lib/curl/include/curl -I$(ROOT_PATH)/lib/x264/include -I$(ROOT_PATH)/lib/openssl/include/openssl
-INCLUDE := -I$(ROOT_PATH)/lib/ffmpeg/include -I$(ROOT_PATH)/lib/inc/curl -I$(ROOT_PATH)/lib/inc/openssl
+INCLUDE := -I$(ROOT_PATH)/lib/ffmpeg/include -I$(ROOT_PATH)/lib/inc/curl -I$(ROOT_PATH)/lib/inc/openssl -I$(ROOT_PATH)/lib/x264/include
 CFLAGS  := -s -g -Wall -O3 -pthread $(DEFINES) $(INCLUDE)
 CXXFLAGS:= $(CFLAGS) -DHAVE_CONFIG_H -std=c++11 -Wno-unknown-pragmas #-Wunused-variable -Wformat-zero-length
 SHARE   := -fPIC -shared -o

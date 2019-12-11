@@ -14,7 +14,7 @@ cd $X264_PATH
 CC=$ARM_GCC-gcc \
 ./configure \
 --host=$ARM_GCC \
---enable-static \
+--disable-static \
 --enable-shared \
 --enable-pic \
 --prefix=$X264_PREFIX \

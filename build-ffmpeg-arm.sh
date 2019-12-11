@@ -3,6 +3,7 @@
 FF_VERSION="3.4.2"
 FF_SOURCE=`pwd`/"ffmpeg-$FF_VERSION"
 FF_PREFIX=`pwd`/FFmpeg-arm
+X264_PATH=`pwd`/x264-arm
 ARM_GCC=arm-buildroot-linux-gnueabi
 
 mkdir -p $FF_PREFIX && rm $FF_PREFIX/* -rf
@@ -16,6 +17,16 @@ CONFIGURE_FLAGS="--disable-encoders --disable-decoders --disable-demuxers --disa
 
 CONFIGURE_CFLAGS=""
 CONFIGURE_LDFLAGS=""
+
+
+if [ "$X264_PATH" ]
+then
+    CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-gpl --enable-libx264"
+    CONFIGURE_CFLAGS="-I$CONFIGURE_CFLAGS$X264_PATH/include"
+    CONFIGURE_LDFLAGS="-L$CONFIGURE_LDFLAGS$X264_PATH/lib"
+    echo "x264_cflags:$CONFIGURE_CFLAGS"
+    echo "x264_ldflags:$CONFIGURE_LDFLAGS"
+fi
 
 ./configure \
 --cc=$ARM_GCC-gcc \
